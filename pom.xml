@@ -63,13 +63,34 @@
         <licenses.version>5.5.1</licenses.version>
         <checkstyle.suppressions.location>checkstyle/suppressions.xml</checkstyle.suppressions.location>
         <hadoop.version>2.7.7</hadoop.version>
+        <protoparquet.version>1.11.1</protoparquet.version>
+        <deepintent-protobuf.version>1.0.45</deepintent-protobuf.version>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>s3.release</id>
+            <url>s3://repo.deepintent.com/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>s3.snapshot</id>
+            <url>s3://repo.deepintent.com/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <repositories>
         <repository>
             <id>confluent</id>
             <name>Confluent</name>
             <url>${confluent.maven.repo}</url>
+        </repository>
+        <repository>
+            <id>release</id>
+            <url>s3://repo.deepintent.com/release</url>
+        </repository>
+        <repository>
+            <id>snapshot</id>
+            <url>s3://repo.deepintent.com/snapshot</url>
         </repository>
     </repositories>
 
@@ -159,6 +180,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.parquet</groupId>
+            <artifactId>parquet-protobuf</artifactId>
+            <version>${protoparquet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.deepintent</groupId>
+            <artifactId>protobuf-objects</artifactId>
+            <version>${deepintent-protobuf.version}</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
@@ -211,5 +242,12 @@
               </plugin>
            </plugins>
         </pluginManagement>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>5.0.0.RELEASE</version>
+            </extension>
+        </extensions>
     </build>
 </project>
