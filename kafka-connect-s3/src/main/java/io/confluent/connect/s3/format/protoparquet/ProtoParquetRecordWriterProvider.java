@@ -133,6 +133,7 @@ public class ProtoParquetRecordWriterProvider
     };
   }
 
+
   private static class S3ParquetOutputFile implements OutputFile {
     private static final int DEFAULT_BLOCK_SIZE = 0;
     private S3Storage storage;
@@ -176,7 +177,6 @@ public class ProtoParquetRecordWriterProvider
       super(file, protoMessage, compressionCodecName, blockSize, pageSize);
     }
 
-
     public static <T> Builder<T> builder(Path file) {
       return new Builder<T>(file);
     }
@@ -216,7 +216,6 @@ public class ProtoParquetRecordWriterProvider
         return (WriteSupport<T>) ProtoParquetWriterBuilder.writeSupport(protoMessage);
       }
     }
-
 
   }
 
