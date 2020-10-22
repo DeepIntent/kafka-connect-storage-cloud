@@ -72,7 +72,6 @@ public class ProtoParquetRecordWriterProvider
       @Override
       public void write(SinkRecord record) {
         if (messageClass == null) {
-
           try {
             messageClass = Class.forName(className).asSubclass(Message.class);
           } catch (ClassNotFoundException e) {
@@ -109,7 +108,6 @@ public class ProtoParquetRecordWriterProvider
                 | InvocationTargetException e) {
           throw new ConnectException(e);
         }
-
       }
 
       @Override
@@ -134,6 +132,7 @@ public class ProtoParquetRecordWriterProvider
       }
     };
   }
+
 
   private static class S3ParquetOutputFile implements OutputFile {
     private static final int DEFAULT_BLOCK_SIZE = 0;
@@ -218,7 +217,6 @@ public class ProtoParquetRecordWriterProvider
         return (WriteSupport<T>) ProtoParquetWriterBuilder.writeSupport(protoMessage);
       }
     }
-
 
   }
 
