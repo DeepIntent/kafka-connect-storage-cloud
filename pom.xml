@@ -63,20 +63,9 @@
         <licenses.version>5.5.1</licenses.version>
         <checkstyle.suppressions.location>checkstyle/suppressions.xml</checkstyle.suppressions.location>
         <hadoop.version>2.7.7</hadoop.version>
-        <protoparquet.version>1.11.1</protoparquet.version>
-        <deepintent-protobuf.version>1.0.45</deepintent-protobuf.version>
+        <deepintent-protobuf.version>1.0.100-SNAPSHOT</deepintent-protobuf.version>
+        <protobuf.version>3.11.4</protobuf.version>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>s3.release</id>
-            <url>s3://repo.deepintent.com/release</url>
-        </repository>
-        <snapshotRepository>
-            <id>s3.snapshot</id>
-            <url>s3://repo.deepintent.com/snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <repositories>
         <repository>
@@ -160,6 +149,10 @@
                     <groupId>org.codehaus.jackson</groupId>
                     <artifactId>jackson-mapper-asl</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.google.protobuf</groupId>
+                    <artifactId>protobuf-java</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -182,12 +175,17 @@
         <dependency>
             <groupId>org.apache.parquet</groupId>
             <artifactId>parquet-protobuf</artifactId>
-            <version>${protoparquet.version}</version>
+            <version>${parquet.version}</version>
         </dependency>
         <dependency>
             <groupId>com.deepintent</groupId>
             <artifactId>protobuf-objects</artifactId>
             <version>${deepintent-protobuf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
