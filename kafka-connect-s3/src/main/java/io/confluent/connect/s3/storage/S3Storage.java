@@ -33,6 +33,7 @@ import com.amazonaws.services.s3.model.ObjectTagging;
 import com.amazonaws.services.s3.model.SetObjectTaggingRequest;
 import com.amazonaws.services.s3.model.Tag;
 import com.amazonaws.SdkClientException;
+import io.confluent.connect.s3.format.protoparquet.ProtoParquetFormat;
 import org.apache.avro.file.SeekableInput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -219,6 +220,10 @@ public class S3Storage implements Storage<S3SinkConnectorConfig, ObjectListing> 
 
     if (ParquetFormat.class.isAssignableFrom(
         this.conf.getClass(S3SinkConnectorConfig.FORMAT_CLASS_CONFIG))) {
+      return new S3ParquetOutputStream(path, this.conf, s3);
+    }
+    if (ProtoParquetFormat.class.isAssignableFrom(
+            this.conf.getClass(S3SinkConnectorConfig.FORMAT_CLASS_CONFIG))) {
       return new S3ParquetOutputStream(path, this.conf, s3);
     } else {
       // currently ignore what is passed as method argument.
