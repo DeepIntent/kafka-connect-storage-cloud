@@ -64,7 +64,6 @@
         <checkstyle.suppressions.location>checkstyle/suppressions.xml</checkstyle.suppressions.location>
         <hadoop.version>2.7.7</hadoop.version>
         <deepintent-protobuf.version>1.0.100-SNAPSHOT</deepintent-protobuf.version>
-        <protobuf.version>3.5.1</protobuf.version>
     </properties>
 
     <repositories>
