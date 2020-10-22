@@ -63,6 +63,8 @@
         <licenses.version>5.4.1</licenses.version>
         <checkstyle.suppressions.location>checkstyle/suppressions.xml</checkstyle.suppressions.location>
         <hadoop.version>2.7.7</hadoop.version>
+        <deepintent-protobuf.version>1.0.100-SNAPSHOT</deepintent-protobuf.version>
+        <protobuf.version>3.5.1</protobuf.version>
     </properties>
 
     <repositories>
@@ -70,6 +72,14 @@
             <id>confluent</id>
             <name>Confluent</name>
             <url>${confluent.maven.repo}</url>
+        </repository>
+        <repository>
+            <id>release</id>
+            <url>s3://repo.deepintent.com/release</url>
+        </repository>
+        <repository>
+            <id>snapshot</id>
+            <url>s3://repo.deepintent.com/snapshot</url>
         </repository>
     </repositories>
 
@@ -135,6 +145,10 @@
                     <groupId>commons-beanutils</groupId>
                     <artifactId>commons-beanutils-core</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.google.protobuf</groupId>
+                    <artifactId>protobuf-java</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -153,6 +167,21 @@
                 </exclusion>
             </exclusions>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.parquet</groupId>
+            <artifactId>parquet-protobuf</artifactId>
+            <version>${parquet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.deepintent</groupId>
+            <artifactId>protobuf-objects</artifactId>
+            <version>${deepintent-protobuf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -207,5 +236,12 @@
               </plugin>
            </plugins>
         </pluginManagement>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>5.0.0.RELEASE</version>
+            </extension>
+        </extensions>
     </build>
 </project>
