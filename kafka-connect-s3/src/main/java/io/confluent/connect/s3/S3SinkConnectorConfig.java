@@ -22,6 +22,7 @@ import com.amazonaws.regions.RegionUtils;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.SSEAlgorithm;
+import io.confluent.connect.s3.format.protoparquet.ProtoParquetFormat;
 import org.apache.kafka.common.Configurable;
 import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;
@@ -70,6 +71,8 @@ import static org.apache.kafka.common.config.ConfigDef.Range.atLeast;
 
 public class S3SinkConnectorConfig extends StorageSinkConnectorConfig {
 
+  public static final String PROTOBUF_MESSAGE_CLASS_CONFIG = "protobuf.message.class";
+  public static final String PROTOBUF_MESSAGE_CLASS_DEFAULT = "skip-tests";
   // S3 Group
   public static final String S3_BUCKET_CONFIG = "s3.bucket.name";
 
@@ -170,7 +173,8 @@ public class S3SinkConnectorConfig extends StorageSinkConnectorConfig {
             AvroFormat.class,
             JsonFormat.class,
             ByteArrayFormat.class,
-            ParquetFormat.class
+            ParquetFormat.class,
+            ProtoParquetFormat.class
         )
     );
 
@@ -207,6 +211,18 @@ public class S3SinkConnectorConfig extends StorageSinkConnectorConfig {
     {
       final String group = "S3";
       int orderInGroup = 0;
+
+      configDef.define(
+          PROTOBUF_MESSAGE_CLASS_CONFIG,
+          Type.STRING,
+          PROTOBUF_MESSAGE_CLASS_DEFAULT,
+          Importance.HIGH,
+          "Protobuf message class name from DeepIntent package",
+          group,
+          ++orderInGroup,
+          Width.LONG,
+          "Protobuf message class"
+      );
 
       configDef.define(
           S3_BUCKET_CONFIG,
@@ -519,6 +535,10 @@ public class S3SinkConnectorConfig extends StorageSinkConnectorConfig {
     for (String key : parsedProps.keySet()) {
       propertyToConfig.put(key, config);
     }
+  }
+
+  public String getProtobufMessageClass() {
+    return getString(PROTOBUF_MESSAGE_CLASS_CONFIG);
   }
 
   public String getBucketName() {
