@@ -64,7 +64,6 @@
         <checkstyle.suppressions.location>checkstyle/suppressions.xml</checkstyle.suppressions.location>
         <hadoop.version>2.7.7</hadoop.version>
         <deepintent-protobuf.version>1.0.100-SNAPSHOT</deepintent-protobuf.version>
-        <protobuf.version>3.11.4</protobuf.version>
     </properties>
 
     <repositories>
@@ -181,11 +180,6 @@
             <groupId>com.deepintent</groupId>
             <artifactId>protobuf-objects</artifactId>
             <version>${deepintent-protobuf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>${protobuf.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
