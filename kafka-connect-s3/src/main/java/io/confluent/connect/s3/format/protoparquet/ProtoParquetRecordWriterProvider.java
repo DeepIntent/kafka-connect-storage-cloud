@@ -48,7 +48,7 @@ public class ProtoParquetRecordWriterProvider
   private static final Logger log = LoggerFactory.getLogger(
           ProtoParquetRecordWriterProvider.class);
   private static final String EXTENSION = ".parquet";
-  private static final int PAGE_SIZE = 64 * 1024;
+  private static final int PAGE_SIZE = 4 * 1024 * 1024;
   private final S3Storage storage;
   private final String className;
 
@@ -89,6 +89,7 @@ public class ProtoParquetRecordWriterProvider
                     .withDictionaryEncoding(true)
                     .withCompressionCodec(storage.conf().parquetCompressionCodecName())
                     .withPageSize(PAGE_SIZE)
+                    .withRowGroupSize(storage.conf().getPartSize())
                     .withMessage(messageClass)
                     .build();
 
