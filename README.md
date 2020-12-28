@@ -1,3 +1,13 @@
+# DeepIntent
+Custom protoparquet format is added for 5.4.1 and 5.5.1 versions to DI-5.4.1 and DI-5.5.1 branches.
+
+After building project and generating jar, jar file should be placed into confluent-x.y.z/share/java/kafka-connect-s3 directory.
+Also, the following libraries should be placed into confluent-x.y.z/share/java/kafka-connect-s3 directory:
+ - elephant-bird-core-4.4.jar
+ - parquet-protobuf-1.11.1.jar
+ - protobuf-objects-1.0.100-SNAPSHOT.jar
+ - protobuf-java-3.5.1.jar
+
 # Kafka Connect Connector for S3
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fconfluentinc%2Fkafka-connect-storage-cloud.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fconfluentinc%2Fkafka-connect-storage-cloud?ref=badge_shield)
 
