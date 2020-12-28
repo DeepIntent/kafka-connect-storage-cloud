@@ -30,6 +30,7 @@
     <artifactId>kafka-connect-storage-cloud</artifactId>
     <packaging>pom</packaging>
     <name>kafka-connect-storage-cloud</name>
+    <version>5.5.1</version>
     <organization>
         <name>Confluent, Inc.</name>
         <url>http://confluent.io</url>
@@ -63,7 +64,7 @@
         <licenses.version>5.5.1</licenses.version>
         <checkstyle.suppressions.location>checkstyle/suppressions.xml</checkstyle.suppressions.location>
         <hadoop.version>2.7.7</hadoop.version>
-        <deepintent-protobuf.version>1.0.100-SNAPSHOT</deepintent-protobuf.version>
+        <deepintent-protobuf.version>1.0.112-SNAPSHOT</deepintent-protobuf.version>
     </properties>
 
     <repositories>
@@ -215,6 +216,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>release</id>
+            <url>s3://repo.deepintent.com/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshot</id>
+            <url>s3://repo.deepintent.com/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
         <pluginManagement>
